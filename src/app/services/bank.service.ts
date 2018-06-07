@@ -27,12 +27,10 @@ export class BankService {
   
   // HTTP Request from in-memory-data
   getBanks(): Observable<void> {
-    
     return this.http
       .get('api/banks')
       .pipe(map(data => {
         this.bank = data as IBank[];
-        console.log(this.bank);
       }));
       };
   
