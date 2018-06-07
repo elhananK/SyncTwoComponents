@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 // Import Service 
 import { BankService } from '../../services/bank.service';
 
@@ -8,18 +7,17 @@ import { BankService } from '../../services/bank.service';
   templateUrl: './comp-one.component.html',
   styleUrls: ['./comp-one.component.css']
 })
-export class CompOneComponent implements OnInit {
+export class CompOneComponent  implements OnInit{
 
   constructor( private bService : BankService) { }
-
-  // Subscribe to the BehaviorSubject
-  ngOnInit(){
-    this.bService.cast.subscribe();
-  }
   
-  // Event when chage number
+  ngOnInit(){
+    this.bService.getBanks().subscribe();
+
+  }
+  // Event when change number
   bankNumber( event : any ) {
-    this.bService.setBankName(event.target.value);
+    this.bService.getBankNamefromId(event.target.value);
   }
 
 }

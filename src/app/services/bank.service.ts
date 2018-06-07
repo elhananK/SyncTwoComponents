@@ -1,47 +1,55 @@
 import { Injectable } from '@angular/core';
 
+import { HttpClient } from '@angular/common/http';
+
 // Import BehaviorSubject from rxjs
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-// Hash Table O(1) --- (Don't need to run all the array O(n) )
-const Bname =  [
-  {id: 99, name: 'בנק ישראל'},
-  {id: 12, name: 'בנק הפועלים'},
-  {id: 10, name: 'בנק לאומי'},
-  {id: 11, name: 'בנק דיסקונט'},
-  {id: 20, name: 'בנק מזרחי טפחות'},
-  {id: 31, name: 'הבנק הבינלאומי הראשון'},
-  {id: 14, name: 'בנק אוצר החייל'},
-  {id: 17, name: 'בנק מרכנתיל דיסקונט'},
-  {id: 9, name: 'בנק הדואר'},
-  {id: 13, name: 'בנק איגוד'}
-];
+import { Observable } from 'rxjs/Observable';
 
+import { map } from "rxjs/operators";
+
+import { IBank } from '../interface/bank.interface';
 
 
 @Injectable()
 export class BankService {
 
+
+  public bank: IBank[];
+
   // Create BehaviorSubject Trigger
   private bankName = new BehaviorSubject<string> (' ');
   cast = this.bankName.asObservable();
 
-  constructor() { }
 
+  constructor( private http: HttpClient ) { }
   
-  
-  // Trigger Component Two with Bank name
-  setBankName (id) {
-
-    // get name from Bname Object
-    var name = Bname.find((bname) => bname.id == id) 
-    ? Bname.find((bname) => bname.id == id).name : " ";
+  // HTTP Request from in-memory-data
+  getBanks(): Observable<void> {
     
-    // Trigger
-    this.bankName.next(name);
-
-  };
-
-
+    return this.http
+      .get('api/books')
+      .pipe(map(data => {
+        this.bank = data as IBank[];
+        console.log(this.bank);
+      }));
+      };
   
+
+  getBankNamefromId(id){
+    // find bank name
+    var name = this.bank.find((bname) => bname.id == id)
+    ? this.bank.find((bname) => bname.id == id).name : " ";   
+    
+    // Trigger non-child component
+    this.bankName.next(name);
+  }
+    
+  
+
+
+
+
 }
+
