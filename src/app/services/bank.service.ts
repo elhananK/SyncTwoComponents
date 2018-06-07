@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 
+// HTTP Client
 import { HttpClient } from '@angular/common/http';
 
 // Import BehaviorSubject from rxjs
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { Observable } from 'rxjs/Observable';
-
 import { map } from "rxjs/operators";
 
+// Interface
 import { IBank } from '../interface/bank.interface';
 
 
 @Injectable()
 export class BankService {
-
 
   public bank: IBank[];
 
@@ -29,7 +29,7 @@ export class BankService {
   getBanks(): Observable<void> {
     
     return this.http
-      .get('api/books')
+      .get('api/banks')
       .pipe(map(data => {
         this.bank = data as IBank[];
         console.log(this.bank);

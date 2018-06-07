@@ -11,6 +11,7 @@ export class CompOneComponent  implements OnInit{
 
   constructor( private bService : BankService) { }
   
+  // On start get all banks from servers
   ngOnInit(){
     this.bService.getBanks().subscribe();
 

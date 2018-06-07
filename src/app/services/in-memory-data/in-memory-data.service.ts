@@ -1,7 +1,8 @@
+// In Memory Data
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class InMemoryDataService implements InMemoryDbService {
     createDb() {
-         const books = [
+         const banks = [
                 {id: 99, name: 'בנק ישראל'},
                 {id: 12, name: 'בנק הפועלים'},
                 {id: 10, name: 'בנק לאומי'},
@@ -13,7 +14,7 @@ export class InMemoryDataService implements InMemoryDbService {
                 {id: 9, name: 'בנק הדואר'},
                 {id: 13, name: 'בנק איגוד'}      
                        ]
-        return { books };
+        return { banks };
     }
 }
 

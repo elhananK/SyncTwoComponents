@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { NgModule } from '@angular/core';
 
+// HTTP 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 // Root Component
@@ -16,9 +17,6 @@ import { CompOneComponent } from './components/comp-one/comp-one.component';
 import { CompTwoComponent } from './components/comp-two/comp-two.component';
 
 // Imports for loading & configuring the in-memory web api
-// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemHeroService } from './services/in-memory-data/in-memory-data.service';
-
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data/in-memory-data.service';
 
@@ -34,7 +32,6 @@ import { InMemoryDataService } from './services/in-memory-data/in-memory-data.se
     HttpClientModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService)
-    // HttpClientInMemoryWebApiModule.forRoot(InMemHeroService)
   ],
   providers: [
     BankService
